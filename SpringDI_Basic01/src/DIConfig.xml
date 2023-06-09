@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 객체를 만드는 코드 -->
+	<!-- class : package -->
+	<!-- NewRecord record = new NewRecord(); -->
+	<bean class="Spring_DI4.NewRecord" id="record"></bean> 
+	
+	<!-- NewRecordView view = new NewRecordView(100, 50, 40); -->
+	<!-- view.setRecord(record) -->
+	<bean class="Spring_DI4.NewRecordView" id="view"> <!-- 객체 생성 -->
+		<property name="record" ref="record"></property> <!-- 주입 -->
+		<!-- name: 별칭, ref: 주입 -->
+	</bean>	
+</beans>
