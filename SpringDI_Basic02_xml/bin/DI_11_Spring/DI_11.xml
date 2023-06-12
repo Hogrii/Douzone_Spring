@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!--			
+		JAVA 코드
+		1. DataSourceFactory 빈 객체
+		2. jdbc.properties file read
+		3. DataSrouceFactory setter를 사용해서 value 주입
+		
+		KEY Point
+		xml 설정 파일에서 Spring context 기능을 사용해야 가능
+		xmlns:context="http://www.springframework.org/schema/context"	
+		xsi:schemaLocation="http://www.springframework.org/schema/context 
+							http://www.springframework.org/schema/context/spring-context-4.3.xsd"
+	-->
+	
+	<context:property-placeholder location="classpath:DI_11_Spring/jdbc.properties" />
+	<bean id="dataSourceFactory" class="DI_11_Spring.DataSourceFactory">
+		<property name="jdbcdriver" value="${jdbc.driver}"></property>
+		<property name="jdbcurl"    value="${jdbc.url}"></property>	
+		<property name="username"   value="${jdbc.username}"></property>	
+		<property name="password"   value="${jdbc.password}"></property>		
+	</bean>
+</beans>
