@@ -1,0 +1,23 @@
+MVC 패턴
+
+Model(DTO, DAO, Service)
+
+View(html(별도의 템플릿 필요 >> timeleaf, freemaker 같은거), jsp(EL, JSTL))
+
+Controller(Servlet)
+
+클라이언트 요청 -> Controller -> Service -> DTO, DAO -> Service -> Controller -> View -> forward -> 서버 응답
+
+1. 요구사항
+DB를 2개 사용 : Oracle, mysql
+
+create table Article() ..
+
+Model
+DTO > ArticleDTO
+DAO > ArticleDAO interface > 추상 함수
+ArticleDAO 구현 >> OracleDAO, MySqlDAO
+Service >> DAO 생성 후 함수 호출
+
+Service는 ArticleDAO 의존(포괄) 필요하다 ..
+ 
