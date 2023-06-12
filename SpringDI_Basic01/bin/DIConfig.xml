@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 객체를 만드는 코드 -->
+	<!-- container -->
 	<!-- class : package -->
 	<!-- NewRecord record = new NewRecord(); -->
 	<bean class="Spring_DI4.NewRecord" id="record"></bean> 

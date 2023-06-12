@@ -4,39 +4,37 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Program {
+
 	public static void main(String[] args) {
 		/*
-			// NewRecordView view = new NewRecordView(100, 50, 40);		
-			// view.print();
-			
+			//NewRecordView view = new NewRecordView(100, 50, 40);
+			//view.print();
 			NewRecordView view = new NewRecordView();
-			// ³î´Ù°¡
-			// ³ª´Â NewRecord °´Ã¼ ÁÖ¼Ò°¡ ÇÊ¿äÇØ
+			//ë†€ë‹¤ê°€
+			//ë‚˜ëŠ” ë‹ˆê°€ í•„ìš”í•´ NewRecord ê°ì²´ ì£¼ì†Œê°€
 			NewRecord record = new NewRecord(100, 100, 100);
-			view.setRecord(record); // ÀÇÁ¸°´Ã¼ÀÇ ÁÖ¼Ò¸¦ ÁÖÀÔ ¹Ş´Â´Ù(DI)
+			view.setRecord(record); //ì˜ì¡´ê°ì²´ì˜ ì£¼ì†Œë¥¼ ì£¼ì… ë°›ëŠ”ë‹¤ (DI) > spring ìë™í™” ...
 			view.print();
 		 */
 		/*
-		 * ½ºÇÁ¸µÀº ÀÚ½Å¸¸ÀÇ ¸Ş¸ğ¸® °ø°£À» °®´Â´Ù
-		 * 1. SpringFrameWork ÄÁÅ×ÀÌ³Ê¸¦ Á¦°ø(¸Ş¸ğ¸® »ı¼º : ÄÁÅ×ÀÌ³Ê(IOC ÄÁÅ×ÀÌ³Ê))
-		 *    ApplicationContext context = new ClassPathXmlApplicationContext("DIConfig.xml");
-		 * 	  ApplicationContext ¸Ş¸ğ¸® °ø°£À» ¸¸µé°í, DIConfig.xml ÆÄÀÏÀ» ÄÄÆÄÀÏÇÏ°í ÀĞ°í ¼³Á¤ÇÑ´Ù
-		 * 2. ÄÁÅ×ÀÌ³Ê¸¦ ¸¸µé°í ±× ¸Ş¸ğ¸®¿¡ ÇÊ¿äÇÑ [°´Ã¼¸¦ »ı¼º]ÇÑ µÚ °´Ã¼µéÀ» Á¶¸³(ÁÖÀÔ:DI) ÇÑ´Ù.. ³ªÁß¿¡ ÀÚµ¿ ¼Ò¸ê
-		 * 	  >> ÄÁÅ×ÀÌ³Ê°¡ »ı¼ºµÇ°í DIConfig.xml¸¦ read ..
-		 * 	  >> DIConfig.xml ¾È¿¡ °´Ã¼ »ı¼º°ú Á¶¸³¿¡ °ü·ÃµÈ ³»¿ëµéÀÌ µé¾î ÀÖ´Ù
-		 * 	  >> »ı¼ºµÈ °´Ã¼¸¦ beanÀÌ¶ó°í ÇÑ´Ù
+			ìŠ¤í”„ë§ì€ ìì‹ ë§Œì˜ ë©”ëª¨ë¦¬ ê³µê°„ì„ ê°€ì ¸ìš” ....
+			1. SpringFrameWork ì»¨í…Œì´ë„ˆë¥¼ ì œê³µ (ë©”ëª¨ë¦¬ ìƒì„± : ì»¨í…Œì´ë„ˆ (IOC ì»¨í…Œì´ë„ˆ)) 
+			   ApplicationContext context = new ClassPathXmlApplicationContext("DIConfig.xml");
+			   ApplicationContext ë©”ëª¨ë¦¬ ê³µê°„ì„ ë§Œë“œëŠ”ë°  ê³µê°„ì„ ë§Œë“¤ê³  DIConfig.xml ì»´íŒŒì¼ í•˜ê³  read ê·¸ë¦¬ê³  ì„¤ì •
+			
+			2. ì»¨í…Œì´ë„ˆ ë§Œë“¤ê³  ê·¸ ë©”ëª¨ë¦¬ì— í•„ìš”í•œ [ê°ì²´ë¥¼ ìƒì„±]í•˜ê³  ì¡°ë¦½(ì£¼ì…:DI) .... ... ë‚˜ì¤‘ì— ìë™ ì†Œë©¸
+			   >> ì»¨í…Œì´ë„ˆ ìƒì„±ë˜ê³  DIConfig.xml read .... 
+			   >>  DIConfig.xml ê°ì²´ ìƒì„±ê³¼ ì¡°ë¦½ xml ì½”ë“œê°€ ìˆì–´ìš” ....
+			   >>  ìƒì„±ëœ ê°ì²´ë¥¼ bean ì´ë¼ í•©ë‹ˆë‹¤
 		 */
 		
-		// 1. ApplicationContext -> ½ºÇÁ¸µ ¸Ş¸ğ¸® °ø°£À» ¸¸µé¾îÁÖ´Â °´Ã¼
-		// SpringÀÌ ÇÊ¿äÇÑ ¸Ş¸ğ¸® °ø°£À» »ı¼ºÇÏ°í »ı¼ºµÈ ¸Ş¸ğ¸®¿¡ DIConfig.xmlÀ» readÇÑ µÚ °´Ã¼¸¦ »ı¼ºÇÏ°í ÁÖÀÔ
 		ApplicationContext context = new ClassPathXmlApplicationContext("DIConfig.xml");
+		//Spring í•„ìš”í•œ ë©”ëª¨ë¦¬ ê³µê°„ì„ ìƒì„±í•˜ê³  ìƒì„±ëœ ë©”ëª¨ë¦¬ì—  DIConfig.xml read í•´ì„œ ê°ì²´ ìƒì„± ì£¼ì…
 		
-		// ÄÁÅ×ÀÌ³Ê ¾È¿¡ ÇÊ¿äÇÑ °´Ã¼°¡ ÀÖ´Ù¸é °¡Áö°í ¿Â´Ù >> DIConfig.xmlÀÇ id°ªÀ» ÀÌ¿ëÇÏ¸é µÈ´Ù
-		RecordView view = (RecordView)context.getBean("view"); // getBeanÀÇ return -> Object
+		//ì»¨í…Œì´ë„ˆ ì•ˆì—ì„œ í•„ìš”í•œ ê°ì²´ê°€ ìˆë‹¤ë©´ ê°€ì§€ê³  ì˜¤ë©´ ë˜ìš”
+		RecordView view = (RecordView)context.getBean("view"); //getBean return Object
 		view.input();
 		view.print();
-		// ½ÇÇà½Ã ¿¡·¯
-		// Caused by: java.lang.ClassNotFoundException: org.apache.commons.logging.LogFactory
-		
 	}
+
 }
