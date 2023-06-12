@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+		Spring Container 안에서 사용할 객체 생성 및 조립(주입) 
+		MessageBean messageBean = new MessageBean_kr(); 
+	-->
+	
+	<bean class="DI_03_Spring.MessageBean_kr" id="messageBean"></bean>
+</beans>
