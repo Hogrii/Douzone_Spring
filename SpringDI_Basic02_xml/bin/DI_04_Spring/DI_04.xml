@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+		Spring Container 안에서 사용할 객체 생성 및 조립(주입) 
+		MessageBeanImple messageBean = new MessageBeanImple("jinho"); // 생성자 주입(객체 또는 값(숫자, 문자, 날짜))
+		messageBean.setGreeting("hello"); // setter 주입(객체 또는 값(숫자, 문자, 날짜)) 
+		messageBean.sayHello();
+		
+		<bean id="식별자 이름" name="m1,m2,m3,m4" class="classpath:경로"><bean>
+		// name : 별칭, 여러개를 부여할 수 있음 >> 구분자는 , 또는 ' ' 또는 ;
+	-->
+	<bean id="messageBean" name="m1,m2 m3;m4" class="DI_04_Spring.MessageBeanImple">
+	<!-- 
+		<constructor-arg>
+			<value>jinho</value>
+		</constructor-arg>
+		**** setGreeting 함수를 구현하고 있는 member field 명을 쓰세요
+		<property name="greeting">
+			<value>hello</value>
+		</property>
+	 -->
+	 <!-- 위 코드를 더 짧게 >> 속성으로 사용 -->
+	 <constructor-arg value="jinho" />
+	 <property name="greeting" value="hello" />
+	</bean>
+</beans>
