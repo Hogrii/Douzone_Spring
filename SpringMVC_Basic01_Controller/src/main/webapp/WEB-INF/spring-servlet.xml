@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- Namespaces에서 context 체크했음 -->
+	
+	<!-- 객체의 생성과 조립을 담당 
+	
+		ApplicationContext context = new ClassPathXmlApplicationContext("DIConfig.xml");
+		컨테이너 생성, xml read 객체 생성 조립.. >> spring은 자동화 시켰다
+		
+		Web에서는
+		1. Tomcat 실행(WAS 서버)
+		2. 클라이언트 요청(hello.do)
+		3. Spring >> <url-pattern>*.do</url-pattern> 패턴 설정에 따라서
+		3.1 DispatcherServlet 객체 생성 >> ** key point : DispatcherServlet이 가지고 놀 수 있는 IOC 컨테이너가 자동 생성
+		3.2 그리고 .. spring-servlet.xml을 read >> IOC 컨테이너 안에 객체를 생성하고 주입한다
+		3.3 약속 : xml 생성시 *-servlet.xml >> * : web.xml 내의 dispatcher의 이름과 같게하면 >> 별칭 spring-servlet.xml >> 자동으로 설정 파일로 인식
+		    >> 그래서 요 페이지 이름이 spring-servlet.xml 인 것.. <servlet-name>spring</servlet-name>
+		4. 컨테이너 안에 객체가 생성되고 주입 작업이 발생한다
+		5. hello.do에 대해서 handler mapping 작업 >> 객체(컨테이너 안에서 찾음) >> id="/hello.do" : 아이디가 요청 주소가 된다
+		   >> 해당 객체의 public ModelAndView handleRequest 함수를 자등으로 실행한다 
+		6. ModelAndView 사용에 필요한 객체를 담고 뷰를 지정하고 리턴
+		7. Dispatcherervlet를 받아 internalResourceViewResolver 뷰의 완성 요청..
+		8. view 에게 ModelAndView 데이터 전달 출력
+		9. 응답 
+	-->
+	
+	<bean id="/hello.do" class="kr.or.kosa.HelloController"></bean>
+	<bean id="/intro.do" class="kr.or.kosa.IntroController"></bean>
+	<bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name = "prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name = "suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+</beans>
