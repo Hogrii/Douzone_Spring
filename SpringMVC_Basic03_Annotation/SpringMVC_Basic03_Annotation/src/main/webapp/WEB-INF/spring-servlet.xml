@@ -27,6 +27,7 @@
 	9. 응답
 	
 	 -->
+	 <!-- annotation을 사용하기 위해 선행 객체를 선언 -->
 	 <context:annotation-config />
 	 <!-- 공통빈  -->
 	 <bean id="internalResourceViewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
