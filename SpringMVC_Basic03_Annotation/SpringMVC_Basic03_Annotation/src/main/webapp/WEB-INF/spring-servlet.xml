@@ -48,4 +48,11 @@
 		전송 방식이 GET, POST냐에 따라 화면 또는 처리를 결정
 	 -->
 	<bean class="com.controller.NewArticleController"></bean>
+	<bean class="com.service.ArticleService"></bean>
+	
+	<!-- TEST 3 -->
+	<bean class="com.controller.OrderController"></bean>
+	
+	<!-- TEST 4 -->
+	<bean class="com.controller.SearchController"></bean>
 </beans>
