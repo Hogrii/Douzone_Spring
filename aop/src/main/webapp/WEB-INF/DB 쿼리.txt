@@ -1,0 +1,7 @@
+create table springuser(
+    id varchar2(50),
+    password varchar2(200) 
+);
+
+
+스프링 계정에서 실행하기
