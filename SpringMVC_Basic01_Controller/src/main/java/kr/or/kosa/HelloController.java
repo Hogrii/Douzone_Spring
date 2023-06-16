@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.Controller;
 // import org.springframework.web.servlet.DispatcherServlet;
 // spring이 제공하는 front servlet controller >> web.xml로 이사
 
-public class HelloController implements Controller{ // java를 웹 전용 파일로 만든 것
+public class HelloController implements Controller{ // java를 웹 전용 파일로 만든 것, Java 11
 
 	// doGet, doPost처럼 생각해보자
 	@Override

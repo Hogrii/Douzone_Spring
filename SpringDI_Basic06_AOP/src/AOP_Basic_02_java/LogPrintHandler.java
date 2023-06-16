@@ -24,7 +24,8 @@ public class LogPrintHandler implements InvocationHandler { // InvocationHandler
 	// 마치 진짜 처럼 ..
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		// Object[] args는 내가 사용할(Calc로부터 받아오는) 메소드들..
+		// method : 내가 사용하는 함수
+		// args : 내가 사용하는 함수의 parameter
 		
 		System.out.println("invoke 함수 호출");
 		System.out.println("Method method " + method);
@@ -40,6 +41,7 @@ public class LogPrintHandler implements InvocationHandler { // InvocationHandler
 		// 주업무(실제 함수 호출) : 주객체가 가지는 주함수 호출(ADD, MUL, SUB)
 		// invoke의 return값은 무조건 Object -> 모든 값을 대리하기 때문
 		int result = (int)method.invoke(this.target, args);
+		System.out.println("주업무 완료 ^^ " + result);
 
 		// 보조 업무
 		// 시간처리 로직(끝시간)
