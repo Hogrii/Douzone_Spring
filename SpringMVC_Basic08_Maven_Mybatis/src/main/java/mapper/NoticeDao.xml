@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.rog/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	KEY POINT
+	1. Mybatis Mapper 작업 시
+	
+	1.1 mapper namespace = "" 명은 DAO의 인터페이스와 동일하게
+	1.2 DAO 인터페이스와 mapper 동기화(인터페이스 함수명과 동일해야 한다) 
+	1.3 interface와 mapper만 있으면 DB 작업이 가능하다
+	
+	//게시물 개수
+	int getCount(String field, String query) throws ClassNotFoundException, SQLException;
+	>> parameter 하나 이상이면 Map을 사용하자!!
+
+	//전체 게시물
+	List<Notice> getNotices(int page, String field, String query) throws ClassNotFoundException, SQLException;
+	
+	//게시물 삭제
+	int delete(String seq) throws ClassNotFoundException, SQLException;
+	
+	//게시물 수정
+	int update(Notice notice) throws ClassNotFoundException, SQLException;
+	
+	//게시물 상세
+	Notice getNotice(String seq) throws ClassNotFoundException, SQLException;
+	
+	//게시물 입력
+	 int insert(Notice n) throws ClassNotFoundException, SQLException; 
+ -->
+ 
+<mapper namespace="dao.NoticeDao"> <!-- Dao Interface와 이름을 동일하게 -->
+	<!-- 
+		int getCount(String field, String query)에 대해 mapper를 만드는 중
+		1. parameter 1개 : 생략 or parameterType="int"
+		2. parameter DTO : parameterType="vo.Notice"
+		3. parameter가 DTO가 아니고 2개 이상인 경우
+		3.1 hashMap >> map.put(key, value) >> parameterType = "hashMap" >> 권장 !!
+		3.2 mybatis parameter read 할 때 : param1, param2, param3 >> keyword 제공
+		
+		ex) int getCount(String field, String query)
+		param1 >> String field
+		param2 >> String query 
+	 -->
+	 
+	<!-- int getCount(String field, String query) -->
+	<select id="getCount" resultType="int">
+		SELECT COUNT(*) CNT FROM NOTICES WHERE ${param1} LIKE '%${param2}%'
+	</select>
+	
+	<!-- 
+		List<Notice> getNotices(int page, String field, String query)
+		
+		int page => param1
+		String field => param2
+		String query => param3
+		
+		int srow = 1 + (page-1)*5; -> 1 + (param1-1)*5;
+		int erow = 5 + (page-1)*5; -> 5 + (param1-1)*5;
+	 -->
+	<select id="getNotices">
+		SELECT * 
+		FROM (SELECT ROWNUM NUM, N.* 
+		      FROM (SELECT * 
+		            FROM NOTICES 
+		            WHERE ${param2} LIKE '%${param3}%'
+		            ORDER BY REGDATE DESC) N)
+		WHERE NUM BETWEEN  1 + (${param1}-1)*5 AND 5 + (${param1}-1)*5
+	</select>
+	
+	<!-- int delete(String seq) -->
+	<!-- parameter 1개 : 생략하거나 타입을 명시한다 -->
+	<delete id="delete">
+		"DELETE NOTICES WHERE SEQ=#{seq}"
+	</delete>
+	
+	<!-- int update(Notice notice) -->
+	<update id="update" parameterType="vo.Notice">
+		UPDATE NOTICES 
+		SET TITLE = #{title}
+		    CONTENT = #{content},
+		    FILESRC = #{fileSrc},
+		    FILESRC2 = #{fileSrc2}
+		WHERE SEQ = #{seq}
+	</update>
+	
+	<!-- Notice getNotice(String seq) -->
+	<select id="getNotice" parameterType="String" resultType="vo.Notice">
+		SELECT seq, title, writer, content, regdate, hit,filesrc, filesrc2 
+		FROM NOTICES WHERE SEQ=#{seq};
+	</select>
+	
+	<!-- int insert(Notice n) -->
+	<insert id="insert" parameterType="vo.Notice">
+		<!-- 서브쿼리를 먼저 실행시키고 seq에 담는다 -->
+		<selectKey order="BEFORE" keyProperty="seq" returnType="String">
+			SELECT MAX(TO_NUMBER(SEQ))+1 FROM NOTICES
+		</selectKey>
+		INSERT INTO NOTICES(SEQ, TITLE, CONTENT, WRITER, REGDATE, HIT, FILESRC, FILESRC2) 
+		VALUES((SELECT MAX(TO_NUMBER(SEQ))+1 FROM NOTICES), #{title}, #{content}, 'kosauser', SYSDATE, 0, ${fileSrc}, $fileSrc2())
+	</insert>
+
+</mapper>
