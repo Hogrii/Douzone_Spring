@@ -41,11 +41,15 @@
 					</dl>
 					<dl class="article-detail-row">
 						<dt class="article-detail-title">첨부파일_1</dt>
-						<dd class="article-detail-data">${notice.fileSrc}</dd>
+						<dd class="article-detail-data">
+							<a href="download.htm?p=upload&f=${notice.fileSrc}">${notice.fileSrc}</a>
+						</dd>
 					</dl>
 					<dl class="article-detail-row">
 						<dt class="article-detail-title">첨부파일_2</dt>
-						<dd class="article-detail-data">${notice.fileSrc2}</dd>
+						<dd class="article-detail-data">
+							<a href="download.htm?p=upload&f=${notice.fileSrc2}">${notice.fileSrc2}</a>
+						</dd>
 					</dl>
 					<div class="article-content">${notice.content}</div>
 				</div>

@@ -10,12 +10,9 @@
 		import org.springframework.jdbc.datasource.DriverManagerDataSource; import 
 		org.springframework.jdbc.core.JdbcTemplate; -->
 	<!-- 공통 DB작업 -->
-	<bean id="driverManagerDataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="oracle.jdbc.driver.OracleDriver"></property>
-		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+	<bean id="driverManagerDataSource"	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"	value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url"			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 		<property name="username" value="springuser"></property>
 		<property name="password" value="1004"></property>
 	</bean>
@@ -25,6 +22,24 @@
 	<bean id="" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="driverManagerDataSource" />
 	</bean>
+
+
+<!-- Mybatis 설정
+기본 자바코드 : SqlMapConfig.xml 에서 설정했던 작업 (DB연결 ,mapper 설정)
+파일 없어지고 설명파일안에서   > SqlSessionFactoryBean
+기존 java 코드 : builder 사용 > Factory 객체 > sqlsession 생성 > 함수사용 
+-->
+<bean id="sqlSessionFactoryBean"  class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="driverManagerDataSource"></property>
+    <property name="mapperLocations" value="classpath*:mapper/*xml" />
+</bean> 
+
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+  <constructor-arg index="0" ref="sqlSessionFactoryBean"/>
+</bean>
+<!-- Mybatis 설정  -->
+
+
 
 
 
@@ -38,31 +53,12 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
-
-	<!-- 파일 업로드 보조(반드시) -->
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10485760"></property>
-		<property name="defaultEncoding" value="UTF-8"></property>
-	</bean>
 	
-	<!-- Mybatis 설정 기본 자바코드 : SqlMapConfig.xml 에서 설정했던 작업 (DB연결 ,mapper 설정) 
-		파일 없어지고 설명파일안에서 > SqlSessionFactoryBean 기존 java 코드 : builder 사용 > Factory 
-		객체 > sqlsession 생성 > 함수사용 두개의 클래스가 위 작업 처리 SqlSessionFactoryBean SqlSessionTemplate 
-		https://cafe.naver.com/kosait/1212 기존 SqlMapConfig.xml 살려서 가는 방식 ..... -->
-	<!-- builder가 사라지고 factory를 생성 -->
-	<!-- 싱글톤 >> 어플리케이션이 종료되기 전까지 사용하고 그냥 두기만하면 된다 -->
-	<bean id="sqlSessionFactoryBean"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations" value="classpath*:mapper/*xml" />
-	</bean>
-
-	<bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg index="0" ref="sqlSessionFactoryBean" />
-	</bean>
-	<!-- Mybatis 설정 -->
+	<!-- 파일 업로드 보조(반드시)  -->
+	<bean  id="multipartResolver"    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+			<property name="maxUploadSize"    value="10485760"></property>
+			<property name="defaultEncoding"  value="UTF-8"></property>
+	</bean>	
 </beans>
 
 
