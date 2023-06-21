@@ -7,16 +7,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-public class ViewResolver {
-	@Bean
-	public InternalResourceViewResolver internalResourceViewResolver() {
-		InternalResourceViewResolver internal = new InternalResourceViewResolver();
-		internal.setPrefix("/WEB-INF/views/board");
-		internal.setSuffix(".jsp");
-		internal.setOrder(1);
-		return internal;
-	}
-	
+public class ViewResolvers {
 	@Bean
 	public BeanNameViewResolver beanNameViewResolver() {
 		BeanNameViewResolver beanName = new BeanNameViewResolver();
@@ -45,4 +36,12 @@ public class ViewResolver {
 		return secondBoard;
 	}
 
+	@Bean
+	public InternalResourceViewResolver internalResourceViewResolver() {
+		InternalResourceViewResolver internal = new InternalResourceViewResolver();
+		internal.setPrefix("/WEB-INF/views/board/");
+		internal.setSuffix(".jsp");
+		internal.setOrder(1);
+		return internal;
+	}
 }

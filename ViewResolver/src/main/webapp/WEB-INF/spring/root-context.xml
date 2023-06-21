@@ -3,7 +3,40 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="beanNameResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+	</bean>
+	<!-- JstView Bean이 BeanNameResolver에서 결과페이지 매핑하는 기능을 한다. -->
+	<bean name="FirstBoard"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url"
+			value="/WEB-INF/views/board/FirstBoard.jsp" />
+	</bean>
+	<bean name="SecondBoard"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url"
+			value="/WEB-INF/views/board/SecondBoard.jsp" />
+	</bean>
+	<bean name="MainPage"
+		class="org.springframework.web.servlet.view.JstlView">
+		<property name="url"
+			value="/WEB-INF/views/board/MainPage.jsp" />
+	</bean>
+
+	<!-- 공통빈 -->
+	<bean id="internalResourceViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/board/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		<property name="order" value="1" />
+	</bean>
 
 
 </beans>
