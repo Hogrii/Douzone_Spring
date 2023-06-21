@@ -25,8 +25,6 @@ public class EmpController {
 	@GetMapping("enroll.htm")
 	public String empEnrollPage() {
 		System.out.println("들렸다가~");
-		List<Emp> list = empService.select();
-		
 		return "emp/empEnroll";
 	}
 	
@@ -48,6 +46,7 @@ public class EmpController {
 	
 	@PostMapping("update.htm")
 	public String empUdate(Emp emp) {
+		System.out.println("업데이트 empno 타입 : " + emp.getEmpno() instanceof String);
 		System.out.println("업데이트 : " + emp.getEmpno());
 		empService.update(emp);
 		return "redirect:/index.htm";

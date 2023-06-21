@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insert" parameterType="vo.Emp">
 		insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno)
-		values(#{empno}, #{ename}, #{job}, #{mgr}, sysdate, #{sal}, #{comm}, #{deptno})
+		values(#{empno}, #{ename}, #{job}, #{mgr}, sysdate, #{hnsal}, #{comm}, #{deptno})
 	</insert>
 	
 	<update id="update" parameterType="vo.Emp">
