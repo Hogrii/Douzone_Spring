@@ -1,6 +1,7 @@
 package ncontroller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,10 +51,10 @@ public class CustomerController {
 	
 
 	@PostMapping(value="noticeReg.htm")  
-	public String noticeReg(Notice n , HttpServletRequest request) {
+	public String noticeReg(Notice n , HttpServletRequest request, Principal principal) {
 		 String url= null;
 		 try {
-			   url = customerservice.noticeReg(n, request);
+			   url = customerservice.noticeReg(n, request, principal);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

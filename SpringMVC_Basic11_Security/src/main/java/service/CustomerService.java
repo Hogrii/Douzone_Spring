@@ -3,6 +3,7 @@ package service;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,7 +94,7 @@ public class CustomerService {
 
 	}
 
-	public String noticeReg(Notice n, HttpServletRequest request) {
+	public String noticeReg(Notice n, HttpServletRequest request, Principal principal) {
 
 		List<CommonsMultipartFile> files = n.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명들 관리
@@ -140,7 +141,8 @@ public class CustomerService {
 		System.out.println("권한 정보 : " + userinfo.getAuthorities()); // 인증된 사용자의 권한 정보
 		System.out.println("사용자 ID : " + userinfo.getUsername()); // 인증된 사용자 ID
 		
-		n.setWriter(userinfo.getUsername()); // 인증된 사용자 ID를 notice에 저장		
+//		n.setWriter(userinfo.getUsername()); // 인증된 사용자 ID를 notice에 저장	
+		n.setWriter(principal.getName()); // 나는 사용자 ID가 필요해
 		/////////////////////////////////////////////////////////////
 		
 		n.setFileSrc(filenames.get(0));
