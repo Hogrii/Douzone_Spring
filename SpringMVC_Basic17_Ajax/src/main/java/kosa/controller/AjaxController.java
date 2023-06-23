@@ -32,7 +32,7 @@ public class AjaxController {
 	//1. 클라이언트에서 전송된 데이터를 객체로 받기:@RequestBody
 	//2. 서버에서 클라이언트에 객체 전송하기         :@ResponseBody
 	@RequestMapping("response2.kosa")
-	public @ResponseBody Employee add(@RequestBody Employee emp) {
+	public @ResponseBody Employee add(@RequestBody Employee emp) { // 비동기도 @RequestBody를 사용하면 DTO로 받을 수 있다
 		System.out.println("response2.kosa");
 		System.out.println(emp.toString());
 		return emp;

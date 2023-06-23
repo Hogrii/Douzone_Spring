@@ -16,6 +16,7 @@
 						http://www.springframework.org/schema/security
 						http://www.springframework.org/schema/security/spring-security.xsd">
 <mvc:annotation-driven /> <!-- @ResponseBody messageConverter : json변환 기타 변환 ... -->
+<!-- mvc:annotation-driven 사용 권장 -->
 <context:component-scan base-package="kosa.controller" />
 	
 <!-- 
