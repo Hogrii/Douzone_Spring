@@ -23,6 +23,7 @@
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
+						<!-- 한글이 꺠지면 넣으세요~ -->
 						<value>text/html;charset=UTF-8</value>
 						<value>application/json;charset=UTF-8</value>
 					</list>

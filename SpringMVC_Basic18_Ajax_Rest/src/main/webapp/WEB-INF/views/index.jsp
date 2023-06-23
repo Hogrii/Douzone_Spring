@@ -15,8 +15,7 @@
 	
 	<script type="text/javascript">
 		
-		$(document).ready(function(){
-			
+		$(document).ready(function(){			
 			//response객체방식 ajax
 			$('#responseBtn').click(function(){
 				 $.ajax(
