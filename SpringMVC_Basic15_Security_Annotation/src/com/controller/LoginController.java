@@ -24,7 +24,7 @@ public class LoginController {
 	public String success(ModelMap map){
 		System.out.println("1. 책 추가하기");
 		Book b1 = new Book("SPRINGBOOK", "kglim"); //name, owner
-		//@PreAuthorize("hasRole('ROLE_WRITE')")
+		//@PreAuthorize("hasRole('ROLE_WRITE')") -> ROLE_WRITE 권한이 있는 사람만 addBook이 가능
 		bookservice.addBook(b1);
 		System.out.println("add book :" + b1.getName() + "/" + b1.getOwner());
 		

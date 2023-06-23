@@ -41,10 +41,9 @@ Table.GridOne Td {
   		});
      	*/
      	
-     	
      	/*
     	 let _param = {firstname:$("#firstName").val(), lastname:$("#lastName").val() , email:$("#email").val()};
-    	 _data = JSON.stringify(_param); //jsonString으로 변환
+    	 const _data = JSON.stringify(_param); //jsonString으로 변환
        	 //alert(_data);
        	 
        	 
@@ -68,8 +67,7 @@ Table.GridOne Td {
        			   
        			 }
        			});
-         */
-       	
+       	*/
     	 $.ajax({
    			type: "post",
    			url:  "response3.kosa",
@@ -83,7 +81,6 @@ Table.GridOne Td {
    				alert('Error while request..'	);
    			}
    		}); 
-     	
      } 
   
 </script>

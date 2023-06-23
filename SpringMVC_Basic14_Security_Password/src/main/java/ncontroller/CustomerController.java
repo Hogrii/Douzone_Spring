@@ -27,7 +27,6 @@ public class CustomerController {
 	public void setCustomerservice(CustomerService customerservice) {
 		this.customerservice = customerservice;
 	}
-
 	
 	@RequestMapping("notice.htm") 
 	public String notices(String pg , String f , String q , Model model) {

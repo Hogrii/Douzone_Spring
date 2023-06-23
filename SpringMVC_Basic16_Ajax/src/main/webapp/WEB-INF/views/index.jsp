@@ -9,26 +9,26 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('#ajaxBtn').click(function(){
-				 const array = new Array();
-				     array[0] = "a";
-				     array[1] = "b";
-				 $.ajax(
-						 { //json  방식
-							type : "post",
-							url  : "json.kosa",
-							data : "command=AjaxTest&name=java&arr="+array,
-							success : function(data){  //서버 {"menu",list}   //data > {}
-								console.log(data);
-								$('#menuView').empty();
-								var opr="";
-								$.each(data.menu,function(index,value){ //data.menu > ["치킨","맥주","피자"]
-									console.log(index + "/" + value);
-									opr += index + "." + value + "<br>";
-								});
-								$('#menuView').append(opr);
-							} 
-						 } 
-				       )    
+				const array = new Array();
+			    array[0] = "a";
+			    array[1] = "b";
+				$.ajax(
+					{ //json  방식
+						type : "post",
+						url  : "json.kosa",
+						data : "command=AjaxTest&name=java&arr="+array,
+						success : function(data){  //서버 {"menu",list}   //data > {}
+							console.log(data);
+							$('#menuView').empty();
+							var opr="";
+							$.each(data.menu,function(index,value){ //data.menu > ["치킨","맥주","피자"]
+								console.log(index + "/" + value);
+								opr += index + "." + value + "<br>";
+							});
+							$('#menuView').append(opr);
+						} 
+					} 
+				)    
 			});
 			
 			

@@ -67,11 +67,11 @@
 			value="classpath*:mapper/*xml" />
 	</bean>
 
+	<!-- Mybatis 설정 -->
 	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactoryBean" />
 	</bean>
-	<!-- Mybatis 설정 -->
 
 
 
